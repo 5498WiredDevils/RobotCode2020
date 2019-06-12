@@ -1,0 +1,40 @@
+package frc.robot;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PWMVictorSPX;
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.IterativeRobot;
+// import edu.wpi.first.wpilibj.AnalogInput;
+// import edu.wpi.first.wpilibj.AnalogPotentiometer;
+// import edu.wpi.first.wpilibj.DigitalOutput;
+// import edu.wpi.first.wpilibj.Solenoid;
+// import edu.wpi.first.wpilibj.DoubleSolenoid;
+// import edu.wpi.first.wpilibj.SolenoidBase;
+// import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.SendableBase;
+
+public class init {
+
+    public void varInit() {
+    
+        WPI_TalonSRX rightFront_master = new WPI_TalonSRX(2);
+        WPI_TalonSRX rightFront_slave  = new WPI_TalonSRX(4);
+        SpeedControllerGroup m_right = new SpeedControllerGroup(rightFront_master, rightFront_slave);
+        //left drive
+        WPI_TalonSRX leftFront_master = new WPI_TalonSRX(1);
+        WPI_TalonSRX leftFront_slave = new WPI_TalonSRX(3);
+        SpeedControllerGroup m_left = new SpeedControllerGroup(leftFront_master, leftFront_slave);
+          DifferentialDrive m_robotDrive = new DifferentialDrive(m_right , m_left );
+    
+        Joystick m_stick = new Joystick(0);
+        Joystick xbox = new Joystick(1);    
+    
+    }
+}
