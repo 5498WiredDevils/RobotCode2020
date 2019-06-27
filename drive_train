@@ -1,0 +1,51 @@
+
+import init;
+
+public class Low_Drive{
+
+//four motor drive train difarenchal arcade drive
+double trigSpeed;
+double leftStick;
+boolean right_act;
+right_act = xlow_rightY > -0.25 && xlow_rightY < 0.25 && xlow_rightX > -0.25 && xlow_rightX < 0.25;
+// leftY_act = -0.25 < xlow_rightX > 0.25;
+// leftStick = xlow_rightX + xlow_rightY
+
+if(x_right_trigger > deadband && x_left_trigger < deadband){
+    trigSpeed = 1.0;
+}
+ else if(x_right_trigger < deadband && x_left_trigger > deadband){
+      trigSpeed = 0.25;
+  //otherwise, no action on fw.
+  }else{
+    trigSpeed = 0.5;
+  }
+
+public void four_arcade(){
+    SpeedControllerGroup m_right = new SpeedControllerGroup(talon2, talon4);
+    SpeedControllerGroup m_left = new SpeedControllerGroup(talon1, talon3);
+    m_robotDrive.arcadeDrive(xLow_leftY * trigSpeed  , xLow_leftX * trigSpeed );
+  }
+
+  public void eaght_arcade(){
+
+SpeedControllerGroup RightFour_Drive = new SpeedControllerGroup(talon1, talon2, talon5, talon6);
+SpeedControllerGroup LeftFour_Drive = new SpeedControllerGroup(talon3, talon4, talon7, talon8);
+DifferentialDrive eaght_arcadeDrive = new DifferentialDrive(RightFour_Drive, LeftFour_Drive);
+eaght_arcadeDrive.arcadeDrive(xLow_leftY * trigSpeed  , xLow_leftX * trigSpeed );
+  }
+
+  public void eaght_mecanum(){
+SpeedControllerGroup RightFront = new SpeedControllerGroup(talon1, talon2);
+SpeedControllerGroup RightBack = new SpeedControllerGroup(talon5, talon6);
+SpeedControllerGroup LeftFront = new SpeedControllerGroup(talon3, talon4);
+SpeedControllerGroup LeftBack = new SpeedControllerGroup(talon7, talon8);
+DifferentialDrive mec_drive = new DifferentialDrive(LeftFront, LeftBack, RightFront, RightBack);
+
+if (right_act == False){
+  m_robotDrive.mecanumDrive_Cartesian(xlow_leftX*trigSpeed, xLow_leftY*trigSpeed, xlow_rightX*trigSpeed);
+}else{
+  eaght_arcade();
+}
+  }
+}
