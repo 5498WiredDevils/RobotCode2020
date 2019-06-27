@@ -24,17 +24,36 @@ public class init {
 
     public void varInit() {
     
-        WPI_TalonSRX rightFront_master = new WPI_TalonSRX(2);
-        WPI_TalonSRX rightFront_slave  = new WPI_TalonSRX(4);
-        SpeedControllerGroup m_right = new SpeedControllerGroup(rightFront_master, rightFront_slave);
-        //left drive
-        WPI_TalonSRX leftFront_master = new WPI_TalonSRX(1);
-        WPI_TalonSRX leftFront_slave = new WPI_TalonSRX(3);
-        SpeedControllerGroup m_left = new SpeedControllerGroup(leftFront_master, leftFront_slave);
-          DifferentialDrive m_robotDrive = new DifferentialDrive(m_right , m_left );
+        // WPI_TalonSRX rightFront_master = new WPI_TalonSRX(2);
+        // WPI_TalonSRX rightFront_slave  = new WPI_TalonSRX(4);
+        // SpeedControllerGroup m_right = new SpeedControllerGroup(rightFront_master, rightFront_slave);
+        // //left drive
+        // WPI_TalonSRX leftFront_master = new WPI_TalonSRX(1);
+        // WPI_TalonSRX leftFront_slave = new WPI_TalonSRX(3);
+        // SpeedControllerGroup m_left = new SpeedControllerGroup(leftFront_master, leftFront_slave);
+        //   DifferentialDrive m_robotDrive = new DifferentialDrive(m_right , m_left );
+        WPI_TalonSRX talon1 = new WPI_TalonSRX(1);
+        WPI_TalonSRX talon2 = new WPI_TalonSRX(2);
+        WPI_TalonSRX talon3 = new WPI_TalonSRX(3);
+        WPI_TalonSRX talon4 = new WPI_TalonSRX(4);
+        WPI_TalonSRX talon5 = new WPI_TalonSRX(5);
+        WPI_TalonSRX talon6 = new WPI_TalonSRX(6);
+        WPI_TalonSRX talon7 = new WPI_TalonSRX(7);
+        WPI_TalonSRX talon8 = new WPI_TalonSRX(8);
+
     
-        Joystick m_stick = new Joystick(0);
-        Joystick xbox = new Joystick(1);    
+        Joystick XboxLow = new Joystick(0);
+      double xLow_leftY, xLow_leftX;
+    xLow_leftY = XboxLow.getRawAxis(1);
+    xLow_leftX = XboxLow.getRawAxis(0);
+      double xLow_rightY, xLow_rightX;
+    xLow_rightY = XboxLow.getRawAxis(5);
+    xLow_rightX = XboxLow.getRawAxis(4);
+      double rightTriggr, leftTrigger;
+    rightTriggr = XboxLow.getRawAxis(3);
+    leftTrigger = XboxLow.getRawAxis(2);
+
+        Joystick xboxHigh = new Joystick(1);    
     
     }
 }
