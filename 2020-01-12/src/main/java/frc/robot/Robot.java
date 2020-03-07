@@ -6,7 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-
+import java.io.*;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Joystick;
-import com.kauailabs.navx.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SPI.Port;
@@ -82,7 +82,7 @@ public class Robot extends TimedRobot {
   // lower chassie drive
   private MecanumDrive m_robotDrive;
   
-  AHRS ahrs = new AHRS(SerialPort.Port );
+// AHRS ahrs = new AHRS(SerialPort.Port );
 
   // Gyroscope variables
   Gyro gyroSPI = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
@@ -341,8 +341,38 @@ double exel;
     }
   
     public void autMove() throws InterruptedException {
-  
-      while (i < 25){
+      System.out.println(i);
+      M_shooter1.set(0.60);
+      M_shooter2.set(-0.60);
+      Timer.delay(0.5);
+      M_shooterFeeder.set(-0.15);
+      Timer.delay(0.5);
+      M_shooterFeeder.set(0.0);
+      Timer.delay(1);
+      M_shooter1.set(0.0);
+      M_shooter2.set(0.0);
+      int j, k;
+      for(i = 0; i < 15; i++)
+      {
+        if(i < 10){
+          m_robotDrive.driveCartesian(0.75, 0.0 ,-0.2);
+          Timer.delay(.1);
+        } else{
+          m_robotDrive.driveCartesian(0.75, 0.0 ,-0.2);
+        Timer.delay(.1);
+        }
+      }
+    Timer.delay(20);
+     
+      //m_robotDrive.driveCartesian(0.0, 0.35 ,0.0);
+      //M_intake.set(-0.75);
+      //Timer.delay(20);
+      //m_robotDrive.driveCartesian(0.0, 0.35 ,0.0);
+      //M_intake.set(0);
+      //m_robotDrive.driveCartesian( 0.0, 0.0 ,0.0);
+  i++;
+
+   /*   while (i < 25){
        
     i++;
     if (i == 1) {
@@ -364,7 +394,6 @@ double exel;
    // TimeUnit.SECONDS.sleep();
   // m_robotDrive.driveCartesian( 0.0, 0.0 ,0.0);
   
-
+*/
 }
  }
-}
